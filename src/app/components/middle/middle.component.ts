@@ -6,25 +6,33 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./middle.component.scss'],
 })
 export class MiddleComponent implements OnInit {
-  @Input() middleNodeData: any;
-  @Input() middleList: any;
+  @Input() middleNodeData=[];
+  @Input() middleList = [];
   @Output() lastNodeData = new EventEmitter();
   @Output() lastList = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {
+
     this.middleData();
     this.middleListEmit();
   }
 
   middleData() {
-    this.middleNodeData.emit();
-    console.log('middleNodeData', this.middleNodeData.emit());
+    console.log(this.middleNodeData);
+
+
+
+
+
+    // this.lastNodeData.emit(this.middleNodeData);
+    // console.log('middleNodeData', this.lastNodeData.emit(this.middleNodeData));
   }
 
   middleListEmit() {
-    this.middleList.emit();
-    console.log('middleList', this.middleList.emit());
+    console.log(this.middleList);
+    // this.lastList.emit(this.middleList);
+    // console.log('lastList', this.lastList.emit(this.middleList));
   }
 }

@@ -10,12 +10,16 @@
 .btn {
   width: 100px;
   height: 32px;
-  color: #333;
-  background-color: yellow;
+  color: #fff;
+  background-color: gray;
   border: none;
   outline: none;
   cursor: pointer;
-  &:hover{
-    background: darken($color: yellow, $amount: 10%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  &:hover {
+    background: darken($color: gray, $amount: 10%);
   }
 }

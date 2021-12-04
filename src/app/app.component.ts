@@ -8,20 +8,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isShow: boolean = false;
-  data: any[] = [];
-  list: any[] = [];
+  data = [];
+  list = [];
   constructor(private _api: APIService) {}
   isShowModal() {
 
     this.isShow = !this.isShow;
     this._api.getData().subscribe((res) => {
       this.data = res;
-      console.log('data', this.data);
+      // console.log('data', this.data);
     });
 
     this._api.getList().subscribe((res) => {
       this.list = res;
-      console.log('list', this.list);
+      // console.log('list', this.list);
     });
   }
 }

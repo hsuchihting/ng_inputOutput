@@ -3,12 +3,7 @@
 <div class="modal" *ngIf="isShow">
   <ng-container *ngFor="let middleNodeData of data">
     <ng-container *ngFor="let middleList of list">
-      <app-middle [middleNodeData]="middleNodeData" [middleList]="middleList">
-
-      </app-middle>
+      <app-middle [middleNodeData]="data" [middleList]="list"> </app-middle>
     </ng-container>
-
   </ng-container>
-
-
 </div>
