@@ -1,0 +1,21 @@
+.modal {
+  padding: 2rem;
+  width: 800px;
+  background-color: #fff;
+  border-radius: 19px;
+  box-shadow: #eee 0 0 5px 5px;
+  margin: 0 auto;
+}
+
+.btn {
+  width: 100px;
+  height: 32px;
+  color: #333;
+  background-color: yellow;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover{
+    background: darken($color: yellow, $amount: 10%);
+  }
+}
