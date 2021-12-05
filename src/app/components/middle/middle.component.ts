@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { APIService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-middle',
@@ -6,33 +7,27 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./middle.component.scss'],
 })
 export class MiddleComponent implements OnInit {
-  @Input() middleNodeData=[];
-  @Input() middleList = [];
-  @Output() lastNodeData = new EventEmitter();
-  @Output() lastList = new EventEmitter();
+  dataItem = [];
+  listItem = [];
+  constructor(private _api: APIService) {}
 
-  constructor() {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-
+  ngAfterViewInit(): void {
     this.middleData();
-    this.middleListEmit();
+    this.middleList();
   }
 
   middleData() {
-    console.log(this.middleNodeData);
-
-
-
-
-
-    // this.lastNodeData.emit(this.middleNodeData);
-    // console.log('middleNodeData', this.lastNodeData.emit(this.middleNodeData));
+    this._api.getData().subscribe((res) => {
+      console.log(res);
+      //todo 在這邊整理成資料格式要用的方式，並且再把對應到的物件一個一個 push 的 last 的陣列中
+    });
   }
-
-  middleListEmit() {
-    console.log(this.middleList);
-    // this.lastList.emit(this.middleList);
-    // console.log('lastList', this.lastList.emit(this.middleList));
+  middleList() {
+    this._api.getList().subscribe((res) => {
+      console.log(res);
+      //todo 在這邊整理成資料格式要用的方式，並且再把對應到的物件一個一個 push 的 last 的陣列中
+    });
   }
 }
