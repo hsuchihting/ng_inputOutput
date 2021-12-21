@@ -1,9 +1,9 @@
 <h2>node 陣列</h2>
-<div *ngFor="let item of node">
-  <p>{{item.node}}</p>
+<div class="width" *ngFor="let item of nodeArr">
+  <p>主節點：{{item.node}}</p>
 </div>
 <h2>info 陣列</h2>
-<div *ngFor="let item of info" class="list">
-  <p>{{item.now_node}}</p>
-  <p>{{item.node_action}}</p>
+<p>狀態說明： 2 為已審核，空字串為未審核。</p>
+<div *ngFor="let item of nodeInfo" class="width list">
+  <p>節點：{{item.node}}，狀態：{{item.node_action}}</p>
 </div>
