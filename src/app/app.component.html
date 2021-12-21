@@ -1,5 +1,9 @@
-<button type="button" class="btn" (click)="isShowModal()">click</button>
-
-<div class="modal" *ngIf="isShow">
-  <app-middle> </app-middle>
+<h2>node 陣列</h2>
+<div *ngFor="let item of node">
+  <p>{{item.node}}</p>
+</div>
+<h2>info 陣列</h2>
+<div *ngFor="let item of info" class="list">
+  <p>{{item.now_node}}</p>
+  <p>{{item.node_action}}</p>
 </div>
