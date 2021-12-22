@@ -139,7 +139,6 @@ export class AppComponent {
 
         let nodeInfo = {
           node: item.node,
-          node_action: infoNode.node_action, //*T03 的 node_action 會是 undefined ，所以會噴錯
           node_name: '',
           info: [],
           memo: '',
