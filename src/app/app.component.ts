@@ -1,3 +1,4 @@
+import { isNgTemplate, ThrowStmt } from '@angular/compiler';
 import { Component } from '@angular/core';
 
 @Component({
@@ -73,12 +74,13 @@ export class AppComponent {
   }
 
   nodeArr: any[] = [];
-  nodeInfo: any[] = [];
+  nodeInfo: any;
+  infoList: any;
   process() {
     let node = this.node;
     let info = this.info;
-    let newArr: any[] = [];
 
+    let newArr: any[] = [];
     node.forEach((item) => {
       let childrenList: { node: string; status: string }[] = [];
 
@@ -100,17 +102,18 @@ export class AppComponent {
       let currentMain = info.find((main) => main.now_node === item.node);
       let mainStatus = !!currentMain ? currentMain.node_action : undefined;
 
-      let mainNode = {
-        node: item.node,
-        status: mainStatus ? mainStatus : '',
-        children: childrenList,
-      };
-      newArr.push(mainNode);
+      if (childrenList.length) {
+        let mainNode = {
+          node: item.node,
+          status: mainStatus ? mainStatus : '',
+          children: childrenList,
+        };
+        newArr.push(mainNode);
+      }
     });
     this.nodeArr = newArr;
-    this.nodeArr.pop(); //* 原始資料是因為結尾的 children 是空字串，在繪圖會噴錯，所以要把最後一個節點移除。
-    console.log(this.nodeArr);
 
+    //* 主節點資訊
     let infoList: any[] = [];
     info.forEach((item) => {
       let info = [];
@@ -118,35 +121,29 @@ export class AppComponent {
       info.push(item.action_date);
       let nodeName = item.now_node;
 
-      let nodeInfo = {
+      this.nodeInfo = {
         node: item.now_node,
         node_name: nodeName ? nodeName : '',
-        node_action: item.node_action,
         info: info,
         memo: item.memo ? item.memo : '',
       };
-      infoList.push(nodeInfo);
+      infoList.push(this.nodeInfo);
     });
 
-    //*新增主節點給 info 陣列
-    this.nodeArr.filter((item) => {
-      console.log('item', item.node);
+    let nodeApplication:any[] = [];
+    this.node.filter((item) => {
+      let infoList = this.info.find(info=>info.now_node ===item.node)
 
-      let infoNode = infoList.find((info) => info.node === item.node);
-
-      if (item.node !== infoNode) {
-        console.log(item.node, infoNode);
-
-        let nodeInfo = {
-          node: item.node,
-          node_name: '',
-          info: [],
-          memo: '',
-        };
-        this.nodeInfo.push(nodeInfo);
+      if(infoList===undefined){
+        let nodeInfo={
+          node:item.node,
+          node_name:item.node,
+          info:[],
+          memo:''
+        }
+        nodeApplication.push(nodeInfo)
       }
     });
-
-    console.log(this.nodeInfo);
+    this.info = [...infoList,...nodeApplication]
   }
 }
